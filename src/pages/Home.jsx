@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Navbar } from '../components/layout/Navbar'; // <-- ¡AQUÍ ESTÁ LA CORRECCIÓN!
+import { Navbar } from '../components/layout/NavBar'; // <-- ¡AQUÍ ESTÁ LA CORRECCIÓN!
 import { Canvas, useFrame } from '@react-three/fiber';
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import { ElectricTendril } from '../components/3d/ElectricTendril';
