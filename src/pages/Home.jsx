@@ -1,29 +1,29 @@
 import React, { useRef } from 'react';
-import { Navbar } from '../components/layout/Navbar';
+import { Navbar } from '../components/layout/Navbar'; // <-- ¡AQUÍ ESTÁ LA CORRECCIÓN!
 import { Canvas, useFrame } from '@react-three/fiber';
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import { ElectricTendril } from '../components/3d/ElectricTendril';
 import { Sphere } from '@react-three/drei';
 import * as THREE from 'three';
-import { FeatureHighlight } from '../components/ui/FeatureHighlight'; // Importamos el componente de parallax
-import { Footer } from '../components/layout/Footer'; // Importamos el Footer
+import { FeatureHighlight } from '../components/ui/FeatureHighlight';
+import { Footer } from '../components/layout/Footer';
 
 // --- DATOS PARA LAS SECCIONES "POR QUÉ ELEGIRNOS" ---
 const features = [
   {
     title: "Seguridad Certificada",
     description: "Nuestra prioridad número uno. Cada instalación, empalme y mantenimiento cumple con las normativas más estrictas de la SEC. Tu tranquilidad es nuestro estándar.",
-    imageUrl: "/images/revision.jpg" // Usando una de tus imágenes de proyecto
+    imageUrl: "/images/revision.jpg"
   },
   {
     title: "Experiencia y Profesionalismo",
     description: "Años de experiencia en el sector nos respaldan. Abordamos cada proyecto con la seriedad y el conocimiento técnico que tu inversión merece, garantizando resultados duraderos.",
-    imageUrl: "/images/empalme.jpg" // Usando otra imagen
+    imageUrl: "/images/empalme.jpg"
   },
   {
     title: "Innovación y Eficiencia",
     description: "No solo reparamos, innovamos. Implementamos tecnología LED y sistemas de gestión energética para reducir tu consumo y optimizar el rendimiento de tus instalaciones.",
-    imageUrl: "/images/led.jpg" // Usando otra imagen
+    imageUrl: "/images/led.jpg"
   },
 ];
 
@@ -34,17 +34,14 @@ function DarkCore({ mouse }) {
   const lightRef = useRef(); 
 
   useFrame(() => {
-    // Calcula la distancia del mouse al centro (0,0)
     const distFromCenter = Math.sqrt(mouse.current.x * mouse.current.x + mouse.current.y * mouse.current.y);
-    const normalizedDist = Math.min(1, distFromCenter); // Limita entre 0 y 1
+    const normalizedDist = Math.min(1, distFromCenter); 
 
-    // La luz brilla más cuando el mouse está cerca del centro
     const lightIntensity = 25 * (1 - normalizedDist); 
     if (lightRef.current) {
       lightRef.current.intensity = lightIntensity;
     }
     
-    // El núcleo se escala ligeramente
     const scale = 0.7 + 0.1 * (1 - normalizedDist); 
     if (coreRef.current) {
       coreRef.current.scale.setScalar(scale);
@@ -69,7 +66,6 @@ function DarkCore({ mouse }) {
 
 // --- Componente PlasmaScene (Toda la escena 3D) ---
 function PlasmaScene() {
-  // Paleta de colores Naranja/Amarillo
   const colors = [
     new THREE.Color("#FFA500"),
     new THREE.Color("#FFD700"),
@@ -81,8 +77,6 @@ function PlasmaScene() {
   const tendrils = [];
   const mouse = useRef(new THREE.Vector2()); 
 
-  // Este useEffect escucha el mouse y actualiza la ref 'mouse'
-  // que luego se pasa al componente DarkCore
   React.useEffect(() => {
     const handlePointerMove = (event) => {
       mouse.current.x = (event.clientX / window.innerWidth) * 2 - 1;
@@ -92,7 +86,6 @@ function PlasmaScene() {
     return () => window.removeEventListener('pointermove', handlePointerMove);
   }, []);
   
-  // Tentáculo Principal (sigue al cursor)
   tendrils.push(
     <ElectricTendril 
       key="main" 
@@ -109,7 +102,6 @@ function PlasmaScene() {
     />
   );
 
-  // Tentáculos Secundarios (aleatorios)
   for (let i = 0; i < 5; i++) { 
     tendrils.push(
       <ElectricTendril 
@@ -136,7 +128,6 @@ function PlasmaScene() {
 
       {tendrils} 
 
-      {/* Esfera de Cristal */}
       <Sphere args={[5, 64, 64]}> 
         <meshPhysicalMaterial
           transmission={0.85}
