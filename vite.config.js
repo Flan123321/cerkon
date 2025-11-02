@@ -1,13 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-// BORRAMOS la importación de @tailwindcss/vite
 
 // https://vitejs.dev/config/
 export default defineConfig({
-
-  base: '/cerkon/',
+  base: '/cerkon/', // <-- ¡Esta línea es crucial!
   plugins: [
     react()
-    // BORRAMOS tailwindcss() de aquí
   ],
 })
