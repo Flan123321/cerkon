@@ -1,0 +1,16 @@
+/* Estas son las directivas correctas para v3 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tu código de @layer base se queda exactamente igual */
+@layer base {
+  body {
+    @apply font-sans bg-cerkon-light text-cerkon-dark;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold;
+  }
+}
