@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Navbar } from '../components/layout/NavBar'; // <-- ¡AQUÍ ESTÁ LA CORRECCIÓN!
+import { Navbar } from '../components/layout/NavBar'; // Corregido a NavBar
 import { Canvas, useFrame } from '@react-three/fiber';
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import { ElectricTendril } from '../components/3d/ElectricTendril';
@@ -185,9 +185,12 @@ export function Home() {
         </div>
       </section>
 
-      {/* --- SECCIÓN "POR QUÉ ELEGIR" (PARALLAX Y CABLES) --- */}
-      <section className="relative py-20 bg-cables-pattern bg-cover bg-center bg-fixed bg-no-repeat px-4 border-t border-gray-100">
-        {/* Overlay oscuro para legibilidad */}
+      {/* --- SECCIÓN "POR QUÉ ELEGIR" (OPTIMIZADA) --- */}
+      <section 
+        // --- 💡 CAMBIO AQUÍ: Eliminamos 'bg-fixed' ---
+        className="relative py-20 bg-cables-pattern bg-cover bg-center bg-no-repeat px-4 border-t border-gray-100"
+      >
+        {/* Overlay oscuro (sin cambios) */}
         <div className="absolute inset-0 bg-cerkon-dark opacity-80 z-0"></div> 
         
         <div className="relative z-10">
@@ -204,7 +207,7 @@ export function Home() {
                 title={feature.title}
                 description={feature.description}
                 imageUrl={feature.imageUrl}
-                reverse={index % 2 === 1} // Alterna el layout
+                reverse={index % 2 === 1}
               />
             ))}
           </div>

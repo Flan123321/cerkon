@@ -1,8 +1,8 @@
-import React, { useRef } from 'react'; // Eliminamos useScroll y useTransform
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { HiOutlineArrowRight } from 'react-icons/hi';
 
-// Variantes para la animación de entrada del CONTAINER completo
+// Variantes de animación (sin cambios)
 const sectionVariants = {
   hidden: { opacity: 0, y: 75 },
   visible: { 
@@ -15,8 +15,6 @@ const sectionVariants = {
     } 
   },
 };
-
-// Variantes para los elementos de TEXTO
 const textItemVariants = {
   hidden: { opacity: 0, x: -75 },
   visible: { 
@@ -31,8 +29,6 @@ const textItemVariants = {
     } 
   },
 };
-
-// Variantes para la IMAGEN
 const imageItemVariants = {
   hidden: { opacity: 0, x: 75, scale: 0.95 },
   visible: { 
@@ -48,7 +44,7 @@ const imageItemVariants = {
   },
 };
 
-// SVG de decoración (pequeño rayo/chispa)
+// SVG de decoración (sin cambios)
 const LightningSVG = ({ className }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
@@ -56,9 +52,7 @@ const LightningSVG = ({ className }) => (
 );
 
 export function FeatureHighlight({ title, description, imageUrl, reverse = false }) {
-  const ref = useRef(null); // Mantenemos useRef para el 'ref' del div principal
-
-  // --- ELIMINAMOS los hooks de parallax (yText, yImage, useScroll) ---
+  const ref = useRef(null);
 
   return (
     <motion.div
@@ -70,16 +64,14 @@ export function FeatureHighlight({ title, description, imageUrl, reverse = false
       viewport={{ once: true, amount: 0.4 }}
       variants={sectionVariants}
     >
-      {/* --- ELIMINADOS los dos <motion.div> de rayos con parallax --- */}
-
-
-      {/* Columna de Texto */}
+      {/* Columna de Texto (OPTIMIZADA) */}
       <motion.div
-        className={`relative p-8 rounded-lg bg-black/50 backdrop-blur-sm shadow-xl 
+        // --- 💡 CAMBIO AQUÍ: Eliminamos 'backdrop-blur-sm' y aumentamos opacidad ---
+        className={`relative p-8 rounded-lg bg-cerkon-dark/80 shadow-xl 
                    border border-cerkon-orange/30 ${reverse ? 'md:order-last' : ''}`}
         variants={textItemVariants}
       >
-        {/* ESTOS SÍ LOS DEJAMOS */}
+        {/* Decoración de rayos (sin cambios) */}
         <LightningSVG className="absolute top-2 left-2 w-6 h-6 text-cerkon-orange opacity-40" />
         <LightningSVG className="absolute bottom-2 right-2 w-6 h-6 text-cerkon-orange opacity-40 rotate-180" />
 
@@ -98,7 +90,7 @@ export function FeatureHighlight({ title, description, imageUrl, reverse = false
         </button>
       </motion.div>
 
-      {/* Columna de Imagen */}
+      {/* Columna de Imagen (sin cambios) */}
       <motion.div
         className="relative group overflow-hidden rounded-2xl shadow-2xl border border-cerkon-orange/30"
         variants={imageItemVariants}

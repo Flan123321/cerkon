@@ -1,7 +1,7 @@
 import React from 'react';
-import { Navbar } from '../components/layout/NavBar';
+import { Navbar } from '../components/layout/NavBar'; // <-- ¡AQUÍ ESTÁ LA CORRECCIÓN!
 import { ServiceCard } from '../components/ui/ServiceCard';
-import { DancingParticles } from '../components/3d/DancingParticles'; // <-- 1. IMPORTAMOS LAS PARTÍCULAS
+import { DancingParticles } from '../components/3d/DancingParticles';
 import { 
   HiOutlineLightningBolt, 
   HiOutlineHome, 
@@ -12,7 +12,6 @@ import {
 } from 'react-icons/hi';
 
 const cerkonServices = [
-  // ... (Tu array de servicios no cambia)
   {
     title: "Empalmes Eléctricos",
     description: "Conexiones seguras y certificadas (monofásicas y trifásicas) para tu hogar o negocio, asegurando el cumplimiento normativo.",
@@ -45,18 +44,14 @@ const cerkonServices = [
   },
 ];
 
-export function Services() {
+export default function Services() { // <-- Añadimos 'export default' para React.lazy
   return (
-    // 2. Añadimos 'relative' para que sirva de ancla al fondo
     <div className="min-h-screen bg-cerkon-light text-cerkon-dark relative overflow-hidden">
       
-      {/* 3. FONDO DE PARTÍCULAS */}
       <div className="absolute inset-0 z-0">
         <DancingParticles />
       </div>
 
-      {/* 4. CONTENIDO PRINCIPAL */}
-      {/* 'relative z-10' para que esté SOBRE las partículas */}
       <div className="relative z-10">
         <Navbar />
 

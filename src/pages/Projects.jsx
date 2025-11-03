@@ -1,10 +1,9 @@
 import React from 'react';
-import { Navbar } from '../components/layout/NavBar';
+import { Navbar } from '../components/layout/NavBar'; // <-- ¡AQUÍ ESTÁ LA CORRECCIÓN!
 import { ProjectCard } from '../components/ui/ProjectCard';
-import { DancingParticles } from '../components/3d/DancingParticles'; // <-- 1. IMPORTAMOS LAS PARTÍCULAS
+import { DancingParticles } from '../components/3d/DancingParticles';
 
 const projectData = [
-  // ... (Tu array de proyectos no cambia)
   {
     title: "Reparación de Tablero",
     category: "Mantenimiento",
@@ -37,17 +36,14 @@ const projectData = [
   },
 ];
 
-export function Projects() {
+export default function Projects() { // <-- Añadimos 'export default' para React.lazy
   return (
-    // 2. Añadimos 'relative'
     <div className="min-h-screen bg-cerkon-light text-cerkon-dark relative overflow-hidden">
       
-      {/* 3. FONDO DE PARTÍCULAS */}
       <div className="absolute inset-0 z-0">
         <DancingParticles />
       </div>
 
-      {/* 4. CONTENIDO PRINCIPAL */}
       <div className="relative z-10">
         <Navbar />
 
