@@ -2,8 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
-import { DancingParticlesFooter } from '../3d/DancingParticlesFooter'; 
-import { Link } from 'react-router-dom'; // <-- 1. IMPORTAMOS LINK
+// --- 1. ELIMINAMOS la importación de 'DancingParticlesFooter' ---
+import { Link } from 'react-router-dom';
 
 // Variantes de Framer Motion (sin cambios)
 const footerVariants = {
@@ -37,29 +37,30 @@ export function Footer() {
       variants={footerVariants}
     >
       
-      <div className="absolute inset-0 z-0 opacity-50">
-        <DancingParticlesFooter />
-      </div>
+      {/* --- 2. FONDO DE PARTÍCULAS CSS (INSTANTÁNEO) --- */}
+      <div 
+        className="absolute inset-0 z-0 opacity-20 
+                   [--tw-gradient-stops:theme(colors.cerkon-orange)] 
+                   bg-particle-pattern bg-20 animate-particle-dance"
+      />
 
+      {/* 3. CONTENIDO PRINCIPAL (con z-10) */}
       <div className="container mx-auto relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-gray-700 pb-10 mb-10">
           
           {/* Columna 1: Logo y Descripción */}
           <motion.div variants={itemVariants}>
-            
-            {/* --- 2. LOGO DE TEXTO (REEMPLAZANDO LA IMG) --- */}
             <Link 
               to="/" 
               className="text-3xl font-bold font-heading tracking-tight text-white mb-6 block"
             >
               Cerkon<span className="text-cerkon-orange">.</span>
             </Link>
-
             <p className="text-gray-400 leading-relaxed text-sm">
               Conectando tu mundo con soluciones eléctricas innovadoras, seguras y eficientes. Tu energía es nuestra misión.
             </p>
             <div className="flex space-x-4 mt-6">
-              {/* Iconos de Redes Sociales (sin cambios) */}
+              {/* Iconos de Redes Sociales */}
               <motion.a 
                 href="https://facebook.com" target="_blank" rel="noopener noreferrer" 
                 className="text-gray-400 hover:text-cerkon-orange transition-colors duration-300"
@@ -83,7 +84,7 @@ export function Footer() {
             </div>
           </motion.div>
 
-          {/* Columna 2: Servicios (sin cambios) */}
+          {/* Columna 2: Servicios */}
           <motion.div variants={itemVariants}>
             <h3 className="text-lg font-semibold text-cerkon-orange mb-6">Nuestros Servicios</h3>
             <ul className="space-y-3 text-sm">
@@ -94,7 +95,7 @@ export function Footer() {
             </ul>
           </motion.div>
 
-          {/* Columna 3: Compañía (sin cambios) */}
+          {/* Columna 3: Compañía */}
           <motion.div variants={itemVariants}>
             <h3 className="text-lg font-semibold text-cerkon-orange mb-6">Compañía</h3>
             <ul className="space-y-3 text-sm">
@@ -105,7 +106,7 @@ export function Footer() {
             </ul>
           </motion.div>
 
-          {/* Columna 4: Suscripción (sin cambios) */}
+          {/* Columna 4: Suscripción */}
           <motion.div variants={itemVariants}>
             <h3 className="text-lg font-semibold text-cerkon-orange mb-6">Mantente Conectado</h3>
             <p className="text-gray-400 text-sm mb-4">
@@ -138,7 +139,7 @@ export function Footer() {
 
         </div>
 
-        {/* Sección de Copyright (sin cambios) */}
+        {/* Sección de Copyright */}
         <div className="text-center text-gray-500 text-xs">
           <p>&copy; {currentYear} Cerkon. Todos los derechos reservados.</p>
         </div>
